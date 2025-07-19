@@ -14,7 +14,10 @@ def predict():
     data = request.get_json()
 
     age = data['age']
-    bmi = data['bmi']
+    weight = data['weight']  # in kg
+    height = data['height']  # in meters
+    bmi = weight / (height ** 2)
+
     children = data['children']
     sex = 1 if data['sex'] == 'male' else 0
     smoker = 1 if data['smoker'] == 'yes' else 0
@@ -29,3 +32,4 @@ def predict():
 
     prediction = model.predict(input_data)[0]
     return jsonify({'predicted_charges': round(prediction, 2)})
+
