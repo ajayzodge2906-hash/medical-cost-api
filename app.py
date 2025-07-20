@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
 import numpy as np
 import joblib
+from flask_cors import CORS
 
 app = Flask(__name__)
 model = joblib.load("medical_cost_model.pkl")
+CORS(app) 
 
 @app.route('/')
 def home():
